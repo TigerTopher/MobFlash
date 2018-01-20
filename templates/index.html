@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>MobFlash</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+
+    <!-- Custom fonts for this template -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/simple-line-icons/css/simple-line-icons.css') }}">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/new-age.css') }}" rel="stylesheet">
+        
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">MobFlash</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#learn_more">What's MobFlash?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#book_now">Book Now</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="masthead">
+      <div class="container h-100">
+        <div class="row h-100">
+          <div class="col-lg-7 my-auto">
+            <div class="header-content mx-auto">
+              <h1 class="mb-5">MobFlash.
+              <br>
+              Make that next Valentine’s Day surprise exceedingly memorable. <!-- In just a single click, you get connect to multiple Flash Mob dance crews, expert videographers and sound engineers, top florists and event organizers in your town - all to make your romantic day extra special--></h1>
+              <a href="#learn_more" class="btn btn-outline btn-xl js-scroll-trigger">Tell me more!</a>
+            </div>
+          </div>
+          <div class="col-lg-5 my-auto">
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="download bg-primary text-center" id="learn_more">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 mx-auto">
+            <h2 class="section-heading">Powered by <img style="max-height: 80px"src="{{ url_for('static', filename='img/fl-logo.svg') }}"/></h2>
+            <br>
+            <p>In just a single click, you get connected to coolest Flash Mob dance crews, expert videographers and sound engineers, top florists and event organizers all around your town!
+            <br>
+            <br>
+            All to make your romantic day extra special.</p>
+            <div class="badges">
+              <a href="#book_now" class="btn btn-outline2 btn-xl js-scroll-trigger">MobFlash it now!</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="book_now">
+      <div class="container">
+        <div class="section-heading text-center">
+          <h2>Book Now</h2>
+          <p class="text-muted">Create the perfect surprise that's within your budget!</p>
+          <hr>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 my-auto  text-center">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-3">
+                </div>
+                <div class="col-lg-6">
+                  {% with messages = get_flashed_messages(with_categories=true) %}
+                      {% if messages %}
+                          <ul>
+                              {% for message in messages %}
+                                  <li>{{ message[1] }}</li>
+                              {% endfor %}
+                          </ul>
+                      {% endif %}
+                  {% endwith %}
+
+                  <form action="" method="post">
+                      {{ form.csrf }}
+           
+                 <table>
+                    <tr>
+                      <td align="right">{{ form.name.label }}</td>
+                      <td align="left">{{ form.name }}</td>
+                    </tr>
+                    <tr>
+                      <td align="right">{{ form.email.label }}</td>
+                      <td align="left">{{ form.email }}</td>
+                    </tr>
+                    <tr>
+                      <td align="right">{{ form.add_videographers.label }}</td>
+                      <td align="left">{{ form.add_videographers }}</td>
+                    </tr>
+                    <tr>
+                      <td align="right">{{ form.budget.label }}</td>
+                      <td align="left">{{ form.budget }}</td>
+                    </tr>
+                    <tr>
+                      <td align="right">{{ form.comments.label }}</td>
+                      <td align="left">{{ form.comments }}</td>
+                    </tr>
+                    </table>
+
+                      <strong>Location: </strong>
+                      Specify the location by dragging the pin!
+                      <br>
+                      <div id="map"></div>
+                      
+                      <script src="https://maps.googleapis.com/maps/api/js"></script>
+                      {{ form.latitude }}
+                      {{ form.longitude }} 
+                      <br>
+                      <input class="btn btn-outline btn-xl text-center" type="submit" value="Book MobFlash" style="background: black" />
+                  </form>
+                  <div class="col-lg-4">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact bg-primary" id="contact">
+      <div class="container">
+        <h2>We
+          <i class="fa fa-heart"></i>
+          new friends!</h2>
+        <ul class="list-inline list-social">
+          <li class="list-inline-item social-twitter">
+            <a href="">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-facebook">
+            <a href="">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-google-plus">
+            <a href="">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2018. Powered by Start Bootstrap template. All Rights Reserved.</p>
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <a href="#">Privacy</a>
+          </li>
+          <li class="list-inline-item">
+            <a href="#">Terms</a>
+          </li>
+          <li class="list-inline-item">
+            <a href="#">FAQ</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="{{ url_for('static', filename='js/new-age.min.js') }}"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/map.js') }}"></script>
+  </body>
+
+</html>
